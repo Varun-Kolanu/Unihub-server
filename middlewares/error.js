@@ -8,9 +8,11 @@ class ErrorHandler extends Error {
 export const errorMiddleware = (err,req,res,next) => {
     err.message = err.message || "Internal server error";
     err.statusCode = err.statusCode || 500;
+    console.error(err.message, err.statusCode)
     res.status(err.statusCode).json({
         success: false,
-        message: err.message
+        message: err.message,
+        stack: err.stack
     });
 }
 

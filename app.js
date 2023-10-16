@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import {errorMiddleware} from "./middlewares/error.js";
 import cors from "cors"
 import userRouter from "./routes/user.js"
+import announcementRouter from "./routes/announcement.js"
 
 
 export const app = express();
@@ -18,7 +19,9 @@ app.use(
     }));
 
 //using routes
-app.use("/api/v1/users", userRouter)
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/announcements", announcementRouter);
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

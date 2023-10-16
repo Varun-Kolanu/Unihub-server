@@ -15,9 +15,16 @@ const userSchema = new mongoose.Schema({
         select: false,
         required: true
     },
-    is_admin: {
-        type: Boolean,
-        default: false
+    role: {
+        type: String,
+        enum: ["branch_admin", "all_branch_admin", "student", "super_admin"],
+        default: "student",
+        required: true
+    },
+    branch: {
+        type: String,
+        enum: ["apd", "bce", "bme", "cer", "che", "chy", "civ", "cse", "eee", "ece", "mst", "mat", "mec", "met", "min", "phe", "phy"],
+        required: true
     },
     createdAt: {
         type: Date,
