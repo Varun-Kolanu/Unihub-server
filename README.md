@@ -27,7 +27,7 @@ Follow these steps to set up the UniHub server on your local machine.
 3. Create a .env file referring .env.example file
 4. Run
    ```bash
-   npm start
+   npm run dev
 
 Your server should be running at http://localhost:3000/      
 5. To access swagger open api documentation for endpoints, use
