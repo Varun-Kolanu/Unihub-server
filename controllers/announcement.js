@@ -56,10 +56,15 @@ export const editAnnouncement = async (req, res, next) => {
                 delete filteredFields[key];
             }
         }
+        const branch = filteredFields.branch;
+        if (branch) {
+            if (branch === "all" && req.user.role !== "all_branch_admin" && req.user.role !== "super_admin") return next(new ErrorHandler("You can't add all branch announcement", 403))
+            if (req.user.role === "branch_admin" && branch !== req.user.branch) return next(new ErrorHandler("You can't add announcement of other branch", 403));
+        }
         const editedAnnouncement = await Announcement.findByIdAndUpdate(
             id,
             filteredFields,
-            {new: true}
+            { new: true }
         )
         res.status(200).json(editedAnnouncement)
     } catch (error) {

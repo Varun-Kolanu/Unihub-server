@@ -87,6 +87,7 @@ export const getUser = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
     try {
+        if (req.user.role !== "super_admin" && req.user._id.toString() !== req.params.id) return next(new ErrorHandler("You can't edit other users profile", 403))
         const user = await User.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
         res.status(200).json(user);
     } catch (error) {
@@ -96,6 +97,7 @@ export const updateUser = async (req, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
     try {
+        if (req.user.role !== "super_admin" && req.user._id.toString() !== req.params.id) return next(new ErrorHandler("You can't delete other user's account", 403))
         const user = await User.findByIdAndDelete(req.params.id);
         res.status(200).json(user);
     } catch (error) {
