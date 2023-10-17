@@ -2,12 +2,12 @@ openapi: 3.0.0
 info:
   title: Unihub API
   description: \
-    [Base Url: https://localhost:3000/api/v1]
+    [Base Url: https://unihub-8im6.onrender.com/api/v1]
     
   version: 1.0.11
 servers:
-  - url: http://localhost:3000/api/v1
-  - url: https://localhost:5000/api/v1 
+  - url: https://unihub-8im6.onrender.com/api/v1
+  - url: http://localhost:3000/api/v1 
 tags:
   - name: Users
     description: To add, get, edit, delete Users
